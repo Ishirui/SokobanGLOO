@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Modele" version="4">
+  <OBJECT>
+    <ID name="Modele" mc="Standard.Package" uid="3ec4e9d1-9777-4434-a5e2-d40e80807322"/>
+    <PID name="Sokoban" mc="Standard.Package" uid="ca8039c9-d0dc-4e0c-b0ef-f52d1ca15553"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Modele]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Drawable" mc="Standard.Interface" uid="3a347f5c-0f92-43d9-8ed9-a0095225101e"/>
+        <COMPID name="Collisionable" mc="Standard.Interface" uid="ffa3cfbc-ee01-42ec-a20d-a5c8e7c33010"/>
+        <COMPID name="Player" mc="Standard.Class" uid="3cd497a3-09a1-4c56-832d-7a85c6799566"/>
+        <COMPID name="Box" mc="Standard.Class" uid="9cf4a86d-907b-4e94-a9bb-62116b74b49b"/>
+        <COMPID name="Wall" mc="Standard.Class" uid="80c1aec3-91bc-4423-8c1b-e9f2d60c5405"/>
+        <COMPID name="Grid" mc="Standard.Class" uid="31534487-cfc0-4100-b387-4c08228e3a47"/>
+        <COMPID name="Target" mc="Standard.Class" uid="2b490bc8-4e15-47c6-88a6-a1f819298af7"/>
+        <COMPID name="BaseObject" mc="Standard.Class" uid="e8c39b43-6bdb-4eca-92a7-cef4de79c5d8"/>
+        <COMPID name="MovableObject" mc="Standard.Class" uid="c5edcf6c-4b52-4985-9bac-c6a5b1325d97"/>
+        <COMPID name="PhysicalObject" mc="Standard.Class" uid="4b4efabb-7c95-4a11-a263-accb7b3b73da"/>
+        <COMPID name="Floor" mc="Standard.Class" uid="49379c30-cb6c-43f9-8f3c-91362ba2012a"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="JavaPackage" mc="Infrastructure.Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>
+      </LINK>
+      <COMP relation="Product">
+        <COMPID name="glooproject Class diagram" mc="Standard.ClassDiagram" uid="5556229f-00b5-4fa4-85e5-0bc22b29a193"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

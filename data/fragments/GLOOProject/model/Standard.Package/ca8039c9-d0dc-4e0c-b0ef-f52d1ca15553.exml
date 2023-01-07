@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Sokoban" version="4">
+  <OBJECT>
+    <ID name="Sokoban" mc="Standard.Package" uid="ca8039c9-d0dc-4e0c-b0ef-f52d1ca15553"/>
+    <PID name="GLOOProject" mc="Standard.Project" uid="e5e61063-0c04-4c49-bbfd-df3193280675"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Sokoban]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedBehavior">
+        <COMPID name="Interaction" mc="Standard.Interaction" uid="5e63eac4-c1b6-4b4c-bfd7-87fe4a2fc97e"/>
+      </COMP>
+      <COMP relation="OwnedElement">
+        <COMPID name="Modele" mc="Standard.Package" uid="3ec4e9d1-9777-4434-a5e2-d40e80807322"/>
+        <COMPID name="Controle" mc="Standard.Package" uid="3b541816-2b51-43be-a21c-27e27840ab35"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

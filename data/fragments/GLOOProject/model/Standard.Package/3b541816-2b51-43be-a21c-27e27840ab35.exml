@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Controle" version="4">
+  <OBJECT>
+    <ID name="Controle" mc="Standard.Package" uid="3b541816-2b51-43be-a21c-27e27840ab35"/>
+    <PID name="Sokoban" mc="Standard.Package" uid="ca8039c9-d0dc-4e0c-b0ef-f52d1ca15553"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Controle]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Controleur" mc="Standard.Class" uid="01ebe963-9455-46bf-86b7-7006c049fa5e"/>
+        <OBJECT>
+          <ID name="Direction" mc="Standard.Enumeration" uid="6564f8da-09a3-422d-9e44-73c4632b9b50"/>
+          <ATTRIBUTES>
+            <ATT name="IsElementary">true</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="IsLeaf">false</ATT>
+            <ATT name="IsRoot">false</ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="Name"><![CDATA[Direction]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <COMP relation="Value">
+              <OBJECT>
+                <ID name="UP" mc="Standard.EnumerationLiteral" uid="80e356c6-94e0-4d07-866e-3b386401dc1f"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[UP]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="RIGHT" mc="Standard.EnumerationLiteral" uid="68e65a54-65e7-40c3-8950-dccad198526f"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[RIGHT]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="DOWN" mc="Standard.EnumerationLiteral" uid="6bdea2ed-3feb-4f6f-b1ae-6533c07d7f23"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[DOWN]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+              <OBJECT>
+                <ID name="LEFT" mc="Standard.EnumerationLiteral" uid="53aba0e1-d7dc-48f2-8e65-daa102ea6a60"/>
+                <ATTRIBUTES>
+                  <ATT name="Name"><![CDATA[LEFT]]></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES></DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <LINK relation="Extension">
+              <FOREIGNID name="JavaEnumeration" mc="Infrastructure.Stereotype" uid="01ec23a8-0000-0262-0000-000000000000"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+        <COMPID name="Gardien" mc="Standard.Class" uid="675dfa58-6bee-4218-8b7b-bfbf681fe9f1"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="JavaPackage" mc="Infrastructure.Stereotype" uid="01ec23a8-0000-0126-0000-000000000000"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
