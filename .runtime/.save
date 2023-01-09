@@ -1,8 +1,0 @@
-#Fri Jan 06 19:46:41 CET 2023
-org.modelio.app.module.propertytab.JavaDesigner\ v3.10.00\ GModule\ @file\:///C\:/Users/pierr/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner_3.10.00.jmdac\ runtime\ module_.org.modelio.app.ui.model.perspective.parentId=org.modelio.app.bottom.parts
-org.modelio.app.diagram.editor.OpenedDiagrams2='moveDroite1' {7b0168f0-b0f5-4ce4-a29a-b8a60aff5642} Standard.SequenceDiagram
-org.modelio.app.module.propertytab.JavaDesigner\ v3.10.00\ GModule\ @file\:///C\:/Users/pierr/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner_3.10.00.jmdac\ runtime\ module_.org.modelio.development.perspective.parentId=app.ui.ext_com.partstack.bottom
-org.modelio.app.diagram.editor.OpenedDiagrams1='glooproject Class diagram' {5556229f-00b5-4fa4-85e5-0bc22b29a193} Standard.ClassDiagram
-org.modelio.app.diagram.editor.OpenedDiagrams0='moveDroite2' {e13e2ecb-9515-4fe7-8f69-0cc0c6e6c730} Standard.SequenceDiagram
-org.modelio.app.module.propertytab.JavaDesigner\ v3.10.00\ GModule\ @file\:///C\:/Users/pierr/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner_3.10.00.jmdac\ runtime\ module_.org.modelio.full.perspective.parentId=app.ui.ext_com.partstack.bottom
-org.modelio.app.module.propertytab.JavaDesigner\ v3.10.00\ GModule\ @file\:///C\:/Users/pierr/.modelio/4.1/modules/JavaDesigner_3.10.00/JavaDesigner_3.10.00.jmdac\ runtime\ module_.org.modelio.diagram.perspective.parentId=app.ui.ext_com.partstack.right
