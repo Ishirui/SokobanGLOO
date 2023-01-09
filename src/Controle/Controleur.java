@@ -2,10 +2,17 @@ package Controle;
 
 import java.util.List;
 import Modele.BaseObject;
+import Modele.Box;
+import Modele.Grid;
+import Modele.Target;
+
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
 @objid ("01ebe963-9455-46bf-86b7-7006c049fa5e")
 public class Controleur {
+    Grid grid;
+    Gardien gardien;
+    
     @objid ("d5fbc405-386a-4326-b344-6d4d8533ff17")
     public void drawAll(List<BaseObject> toDraw) {
     }
@@ -16,6 +23,23 @@ public class Controleur {
 
     @objid ("9dda8c78-746c-48cc-b921-0a062a7f69fe")
     public boolean checkWin() {
+        for(Box box:grid.getBoxes()){
+            int col = box.getColumn();
+            int row = box.getRow();
+            
+            boolean onTarget = false;
+
+            for(Target target:grid.getTargets()){
+                if(col == target.getColumn() && row == target.getRow()){
+                    onTarget = true;
+                    break;
+                }
+            }
+
+            if(!onTarget) return false;
+
+        }
+        return true;
     }
 
 }

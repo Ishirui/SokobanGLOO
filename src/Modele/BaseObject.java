@@ -11,13 +11,13 @@ public abstract class BaseObject {
     protected int row;
 
     @objid ("60ec0d79-00fa-4a63-a11e-d3481a8616b9")
-    int getColumn() {
+    public int getColumn() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.column;
     }
 
     @objid ("7444b450-8ff7-47a5-a7a4-cbfc0cb1155c")
-    int getRow() {
+    public int getRow() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.row;
     }

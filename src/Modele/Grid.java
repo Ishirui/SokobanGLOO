@@ -25,25 +25,25 @@ public class Grid {
     private int width;
 
     @objid ("64f70b5f-3561-457c-8868-0c0a0553af19")
-    Player getPlayer() {
+    public Player getPlayer() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.player;
     }
 
     @objid ("4f1136e8-51b1-4725-9619-bd6baedb8e4f")
-    PhysicalObject[][] getGridMatrix() {
+    public PhysicalObject[][] getGridMatrix() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.gridMatrix;
     }
 
     @objid ("d8cb184e-d535-4f47-bff2-801d01535072")
-    Target[] getTargets() {
+    public Target[] getTargets() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.targets;
     }
 
     @objid ("14331b11-ce31-474d-bfd7-f7f22d7aa3ae")
-    Box[] getBoxes() {
+    public Box[] getBoxes() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.boxes;
     }
@@ -91,13 +91,13 @@ public class Grid {
     }
 
     @objid ("323b4b29-b418-4e0a-87b3-83ee48e35c0b")
-    int getLength() {
+    public int getLength() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.length;
     }
 
     @objid ("e89ac4ec-5308-4c64-9d02-31c930b8e97a")
-    int getWidth() {
+    public int getWidth() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.width;
     }
