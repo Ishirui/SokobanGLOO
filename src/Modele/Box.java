@@ -12,7 +12,7 @@ public class Box extends MovableObject implements Collisionable, Drawable {
     }
 
     @objid ("48baeedc-693d-4cf8-8d58-acf029b75404")
-    boolean isIsOnTarget() {
+    boolean getIsOnTarget() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.isOnTarget;
     }

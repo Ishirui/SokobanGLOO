@@ -52,6 +52,7 @@ public class Grid {
     public void moveObjects(Direction direction, List<MovableObject> objects) throws Exception {
         //NOTE: This method is sensitive to the ordering of the objects list.
         //Especially when moving a box and a player, you should always have the box first.
+        //Usually, the argument to this function should be {player} or {box, player}
 
 
 
