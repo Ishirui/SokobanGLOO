@@ -49,7 +49,7 @@ public class Grid {
     }
 
     @objid ("2831a04f-2bbf-4e8b-8e68-8532b0c232f6")
-    public void moveObjects(Direction direction, List<MovableObject> objects) throws Exception {
+    public void moveObjects(Direction direction, PhysicalObject[] objects) throws Exception {
         //NOTE: This method is sensitive to the ordering of the objects list.
         //Especially when moving a box and a player, you should always have the box first.
         //Usually, the argument to this function should be {player} or {box, player}
@@ -62,7 +62,7 @@ public class Grid {
         int deltaRow = delta[0]; 
         int deltaCol = delta[1]; 
         
-        for(MovableObject obj:objects){
+        for(PhysicalObject obj:objects){
             //Current coordinates in the matrix of the object to move
             int row = obj.getRow();
             int col = obj.getColumn();

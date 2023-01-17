@@ -4,6 +4,7 @@ import java.util.List;
 import Modele.BaseObject;
 import Modele.Box;
 import Modele.Grid;
+import Modele.PhysicalObject;
 import Modele.Target;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
@@ -19,6 +20,16 @@ public class Controleur {
 
     @objid ("bc6c40f3-01b3-4f09-a965-d412ca1d8894")
     public void move(Direction direction) {
+        PhysicalObject[] to_move = gardien.checkMove(grid, direction);
+        if(to_move.length == 0) return; //An empty list represents an impossible move
+
+
+        try{
+            grid.moveObjects(direction, to_move);
+        } catch(Exception exception) {
+            System.out.println("Error while moving !"+exception);
+        }
+
     }
 
     @objid ("9dda8c78-746c-48cc-b921-0a062a7f69fe")

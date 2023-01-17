@@ -38,7 +38,7 @@ public class Gardien {
         PhysicalObject to_go_2 = grid.getGridMatrix()[new_row_2][new_col_2];
         if (to_go_2 instanceof Collisionable) return new PhysicalObject[]{}; //If the Box has to move into something collisionable - including another box ! - it can't, so the move isn't possible
 
-        return new PhysicalObject[]{to_go, player};
+        return new PhysicalObject[]{to_go, player}; //Always put the box to move FIRST (see implementation of Modele.Grid.moveObjects)
 
     }
 }
