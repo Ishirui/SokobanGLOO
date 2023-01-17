@@ -1,11 +1,8 @@
 package Controle;
 
-import Modele.Collisionable;
-
-import java.util.Map;
-
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
+import Modele.Collisionable;
 import Modele.Grid;
 import Modele.MovableObject;
 import Modele.PhysicalObject;
@@ -15,7 +12,7 @@ import Modele.Player;
 public class Gardien {
     @objid ("13c0dc74-ae2d-4d8f-bc14-900825df4f1a")
     public PhysicalObject[] checkMove(Grid grid, Direction direction) {
-        //Returns the list of objects to move, in order (see implementation of Modele.Grid.moveObjects). If the move is not possible, return an empty array
+        //Returns the list of objects to move, in order (see implementation of Controleur.move). If the move is not possible, return an empty array
         
         Player player = grid.getPlayer();
         

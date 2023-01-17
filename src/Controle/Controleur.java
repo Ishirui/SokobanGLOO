@@ -19,16 +19,47 @@ public class Controleur {
     }
 
     @objid ("bc6c40f3-01b3-4f09-a965-d412ca1d8894")
-    public void move(Direction direction) {
+    public void move(Direction direction) throws Exception {
+        //NOTE: This method is sensitive to the ordering of the to_move list.
+        //Especially when moving a box and a player, you should always have the box first.
+        //Usually, to_move should be {player} or {box, player}
+
+
         PhysicalObject[] to_move = gardien.checkMove(grid, direction);
         if(to_move.length == 0) return; //An empty list represents an impossible move
 
+    
+        //Convert enum to row and column changes
+        int[] delta = direction.getDelta();
+        int deltaRow = delta[0]; 
+        int deltaCol = delta[1]; 
+        
+        for(PhysicalObject obj:to_move){
+            //Current coordinates in the matrix of the object to move
+            int row = obj.getRow();
+            int col = obj.getColumn();
 
-        try{
-            grid.moveObjects(direction, to_move);
-        } catch(Exception exception) {
-            System.out.println("Error while moving !"+exception);
+            int newRow = row + deltaRow;
+            int newCol = col + deltaCol;
+
+            PhysicalObject old_obj = grid.getGridMatrix()[row][col];
+            
+            if(!old_obj.equals(obj)){
+                throw new Exception("The object to move wasn't at the right place in the matrix");
+            }
+            
+            PhysicalObject new_obj = grid.getGridMatrix()[newRow][newCol];
+
+            //Swap the two objects, representing the move in the gridMatrix
+            grid.getGridMatrix()[row][col] = new_obj;
+            grid.getGridMatrix()[newRow][newCol] = old_obj;
+            
+
+            //Update the object coordinates
+            obj.move(direction);
+            new_obj.move(direction.getOpposite());
         }
+            
 
     }
 

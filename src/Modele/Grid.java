@@ -1,8 +1,7 @@
 package Modele;
 
-import java.util.List;
-import Controle.Direction;
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
+
 
 @objid ("31534487-cfc0-4100-b387-4c08228e3a47")
 public class Grid {
@@ -46,49 +45,6 @@ public class Grid {
     public Box[] getBoxes() {
         // Automatically generated method. Please delete this comment before entering specific code.
         return this.boxes;
-    }
-
-    @objid ("2831a04f-2bbf-4e8b-8e68-8532b0c232f6")
-    public void moveObjects(Direction direction, PhysicalObject[] objects) throws Exception {
-        //NOTE: This method is sensitive to the ordering of the objects list.
-        //Especially when moving a box and a player, you should always have the box first.
-        //Usually, the argument to this function should be {player} or {box, player}
-
-
-
-
-        //Convert enum to row and column changes
-        int[] delta = direction.getDelta();
-        int deltaRow = delta[0]; 
-        int deltaCol = delta[1]; 
-        
-        for(PhysicalObject obj:objects){
-            //Current coordinates in the matrix of the object to move
-            int row = obj.getRow();
-            int col = obj.getColumn();
-
-            int newRow = row + deltaRow;
-            int newCol = col + deltaCol;
-
-            PhysicalObject old_obj = gridMatrix[row][col];
-            
-            if(!old_obj.equals(obj)){
-                throw new Exception("The object to move wasn't at the right place in the matrix");
-            }
-            
-            PhysicalObject new_obj = gridMatrix[newRow][newCol];
-
-            //Swap the two objects, representing the move in the gridMatrix
-            gridMatrix[row][col] = new_obj;
-            gridMatrix[newRow][newCol] = old_obj;
-            
-
-            //Update the object coordinates
-            obj.move(direction);
-            new_obj.move(direction.getOpposite());
-
-        }
-
     }
 
     @objid ("323b4b29-b418-4e0a-87b3-83ee48e35c0b")
