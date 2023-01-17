@@ -63,24 +63,31 @@ public class Controleur {
 
     }
 
+    public void checkOnTarget(){
+        //Checks which boxes are on targets
+        //Should be run after each move
+        Box[] boxes = grid.getBoxes();
+        Target[] targets = grid.getTargets();   
+        //Note that the targets list is NOT a matrix, only a list
+        //Thus, better to iterate through targets and access boxes through coordinates, rather than the opposite: this saves iterating through an array
+
+        //A priori, all boxes are NOT on targets
+        for(Box box:boxes) box.setIsOnTarget(false);
+
+
+        for(Target target: targets){
+            int col = target.getColumn();
+            int row = target.getRow();
+
+            PhysicalObject obj = grid.getGridMatrix()[row][col];
+
+            if(obj instanceof Box) ((Box) obj).setIsOnTarget(true);
+        }
+    }
+
     @objid ("9dda8c78-746c-48cc-b921-0a062a7f69fe")
     public boolean checkWin() {
-        for(Box box:grid.getBoxes()){
-            int col = box.getColumn();
-            int row = box.getRow();
-            
-            boolean onTarget = false;
-
-            for(Target target:grid.getTargets()){
-                if(col == target.getColumn() && row == target.getRow()){
-                    onTarget = true;
-                    break;
-                }
-            }
-
-            if(!onTarget) return false;
-
-        }
+        for(Box box:grid.getBoxes()) if(!box.getIsOnTarget()) return false;
         return true;
     }
 
