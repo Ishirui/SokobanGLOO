@@ -4,6 +4,12 @@ import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
 @objid ("e8c39b43-6bdb-4eca-92a7-cef4de79c5d8")
 public abstract class BaseObject {
+    public BaseObject(int col, int row){
+        this.column = col;
+        this.row = row;
+    }
+    
+    
     @objid ("01495af3-2c0f-466c-b102-cf2440edd652")
     protected int column;
 

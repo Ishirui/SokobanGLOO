@@ -1,10 +1,9 @@
 package Interface;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -14,7 +13,7 @@ import Modele.Drawable;
 
 public class DrawHandler extends JPanel {
 
-    private Map<String, Image> imageDict;
+    private Map<String, Image> imageDict = new HashMap<String, Image>();
     private Drawable[] drawables;
 
     private int blockSize = 128; //The images are 128x128
@@ -23,11 +22,13 @@ public class DrawHandler extends JPanel {
         super();
 
         //Load all images
-        imageDict.put("Floor", ImageIO.read(getClass().getResource("/assets/Floor.png")));
-        imageDict.put("Box", ImageIO.read(getClass().getResource("/assets/Box.png")));
-        imageDict.put("Player", ImageIO.read(getClass().getResource("/assets/Player.png")));
-        imageDict.put("Target", ImageIO.read(getClass().getResource("/assets/Target.png")));
-        imageDict.put("Wall", ImageIO.read(getClass().getResource("/assets/Wall.png")));
+        System.out.println(this.getClass().getResource("assets/Floor.png"));
+
+        imageDict.put("Floor", ImageIO.read(getClass().getResource("assets/Floor.png")));
+        imageDict.put("Box", ImageIO.read(getClass().getResource("assets/Box.png")));
+        imageDict.put("Player", ImageIO.read(getClass().getResource("assets/Player.png")));
+        imageDict.put("Target", ImageIO.read(getClass().getResource("assets/Target.png")));
+        imageDict.put("Wall", ImageIO.read(getClass().getResource("assets/Wall.png")));
 
         this.drawables = drawables;
     }
