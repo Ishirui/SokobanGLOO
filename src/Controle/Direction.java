@@ -22,16 +22,12 @@ public enum Direction {
     }
 
     public Direction getOpposite(){
-        switch(this){
-            case UP:
-                return DOWN; //No need for breaks since we are returning the function
-            case DOWN:
-                return UP;
-            case LEFT:
-                return RIGHT;
-            default: //The only case left is RIGHT, I'm putting default to suppress IDE warnings
-                return LEFT;
-        }
+        return switch(this){
+            case UP -> DOWN;
+            case DOWN -> UP;
+            case LEFT -> RIGHT;
+            case RIGHT -> LEFT;
+        };
     }
 }
 
