@@ -5,41 +5,46 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class Dessin extends JPanel {
+import Modele.Drawable;
 
-    private Image image;
-    private Color couleur;
+public class DrawHandler extends JPanel {
 
-    public Dessin() {
+    private Map<String, Image> imageDict;
+    private Drawable[] drawables;
+
+    private int blockSize = 128; //The images are 128x128
+
+    public DrawHandler(Drawable[] drawables) throws IOException {
         super();
 
-        couleur = Color.RED;
+        //Load all images
+        imageDict.put("Floor", ImageIO.read(getClass().getResource("/assets/Floor.png")));
+        imageDict.put("Box", ImageIO.read(getClass().getResource("/assets/Box.png")));
+        imageDict.put("Player", ImageIO.read(getClass().getResource("/assets/Player.png")));
+        imageDict.put("Target", ImageIO.read(getClass().getResource("/assets/Target.png")));
+        imageDict.put("Wall", ImageIO.read(getClass().getResource("/assets/Wall.png")));
 
-        try {
-            image = ImageIO.read(new File("logo-CS-blanc.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.drawables = drawables;
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(couleur);
-        g.fillRect(0, 0, 570, 292);
-        g.drawImage(image, 0, 0, null);
-    }
-
-    public Color getCouleur() {
-        return couleur;
-    }
-
-    public void setCouleur(Color c) {
-        couleur = c;
-        repaint();
+        
+        for(Drawable obj:drawables){
+            int x = blockSize*obj.getColumn();
+            int y = blockSize*obj.getRow();
+            
+            Image image = imageDict.get(obj.getClass().getSimpleName());
+            
+            g.drawImage(image, x, y, null);
+        }
+        
+        
     }
 }
