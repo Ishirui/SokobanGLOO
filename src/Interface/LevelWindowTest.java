@@ -1,9 +1,5 @@
 package Interface;
 
-import java.awt.Dimension;
-import java.io.IOException;
-
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import Modele.Box;
@@ -13,7 +9,7 @@ import Modele.Player;
 import Modele.Target;
 import Modele.Wall;
 
-public class SokobanTest {
+public class LevelWindowTest {
 
     public static void main(String[] args) {
         Drawable[] testElements = { new Wall(0,0), new Wall(1, 0), new Wall(2,0), new Wall(3, 0),
