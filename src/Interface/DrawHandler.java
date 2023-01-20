@@ -16,21 +16,22 @@ public class DrawHandler extends JPanel {
     private Map<String, Image> imageDict = new HashMap<String, Image>();
     private Drawable[] drawables;
 
-    private int blockSize = 128; //The images are 128x128
+    private int objectSize;
 
-    public DrawHandler(Drawable[] drawables) throws IOException {
+    public DrawHandler(Drawable[] drawables, int objectSize) throws IOException {
         super();
 
         //Load all images
         System.out.println(this.getClass().getResource("assets/Floor.png"));
 
-        imageDict.put("Floor", ImageIO.read(getClass().getResource("assets/Floor.png")));
-        imageDict.put("Box", ImageIO.read(getClass().getResource("assets/Box.png")));
-        imageDict.put("Player", ImageIO.read(getClass().getResource("assets/Player.png")));
-        imageDict.put("Target", ImageIO.read(getClass().getResource("assets/Target.png")));
-        imageDict.put("Wall", ImageIO.read(getClass().getResource("assets/Wall.png")));
+        imageDict.put("Floor", ImageIO.read(getClass().getResource("assets/Floor.png")).getScaledInstance(objectSize, objectSize, objectSize));
+        imageDict.put("Box", ImageIO.read(getClass().getResource("assets/Box.png")).getScaledInstance(objectSize, objectSize, objectSize));
+        imageDict.put("Player", ImageIO.read(getClass().getResource("assets/Player.png")).getScaledInstance(objectSize, objectSize, objectSize));
+        imageDict.put("Target", ImageIO.read(getClass().getResource("assets/Target.png")).getScaledInstance(objectSize, objectSize, objectSize));
+        imageDict.put("Wall", ImageIO.read(getClass().getResource("assets/Wall.png")).getScaledInstance(objectSize, objectSize, objectSize));
 
         this.drawables = drawables;
+        this.objectSize = objectSize;
     }
 
     @Override
@@ -38,8 +39,8 @@ public class DrawHandler extends JPanel {
         super.paint(g);
         
         for(Drawable obj:drawables){
-            int x = blockSize*obj.getColumn();
-            int y = blockSize*obj.getRow();
+            int x = objectSize*obj.getColumn();
+            int y = objectSize*obj.getRow();
             
             Image image = imageDict.get(obj.getClass().getSimpleName());
             
