@@ -2,7 +2,7 @@ package Sokoban;
 
 import javax.swing.SwingUtilities;
 
-import Controle.Controleur;
+import Controle.GameController;
 import Interface.LevelWindowController;
 import Modele.BaseObject;
 import Modele.Drawable;
@@ -11,12 +11,12 @@ public class Sokoban {
 
     private static int levelNumber;
 
-    private static Controleur currentLevelControleur;
+    private static GameController currentLevelController;
     private static LevelWindowController currentLevelWindowController;
 
     private static LevelDefinitionLoader levelLoader = new LevelDefinitionLoader();
 
-    static void goToLevel(int levelNumber){
+    static void goToLevel(int levelNumber) throws InvalidLevelException{
         Sokoban.levelNumber = levelNumber;
         BaseObject[] levelObjects = levelLoader.getLevelObjects(levelNumber);
 
@@ -34,11 +34,19 @@ public class Sokoban {
         }
 
         //Generate game controller for this level
-    }
+        currentLevelController = new GameController(levelObjects);
 
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(currentLevelWindowController);
     }
+
+
+    public static class InvalidLevelException extends Exception{
+        public InvalidLevelException(String message){
+            super(message);
+        }
+    };
 
 }
