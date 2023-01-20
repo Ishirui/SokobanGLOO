@@ -9,32 +9,20 @@ import javax.swing.SwingUtilities;
 import Modele.Box;
 import Modele.Drawable;
 import Modele.Floor;
+import Modele.Player;
+import Modele.Target;
 import Modele.Wall;
 
-public class SokobanTest implements Runnable {
+public class SokobanTest {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new SokobanTest());
-    }
+        Drawable[] testElements = { new Wall(0,0), new Wall(1, 0), new Wall(2,0), new Wall(3, 0),
+                                new Wall(0,1), new Box(1, 1), new Floor(2, 1), new Wall(3, 1),
+                                new Wall(0,2), new Floor(1, 2), new Player(2, 2), new Wall(3, 2),
+                                new Wall(0,3), new Wall(1, 3), new Wall(2,3), new Wall(3, 3),
+                                new Target(2,1)};
 
-    @Override
-    public void run() {
-        JFrame fenetre = new JFrame("Graphisme avec Swing");
-        fenetre.setPreferredSize(new Dimension(3*128, 128));
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Drawable[] drawables = new Drawable[]{new Box(0,0), new Floor(1,0), new Wall(2,0)};
-
-        DrawHandler drawHandler = null;
-        try {
-            drawHandler = new DrawHandler(drawables);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        fenetre.add(drawHandler);
-        fenetre.pack();
-        fenetre.setVisible(true);
+        SwingUtilities.invokeLater(new LevelWindowController(testElements, 48, "TestLevel"));
     }
 
 }
