@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import Modele.BaseObject;
 import Modele.Drawable;
 
 public class LevelWindowController implements Runnable{
@@ -17,7 +18,7 @@ public class LevelWindowController implements Runnable{
 
     private JFrame window;
 
-    LevelWindowController(Drawable[] levelElements, JFrame existingWindow, int objectSize, String windowTitle){
+    public LevelWindowController(Drawable[] levelElements, JFrame existingWindow, int objectSize, String windowTitle){
         //Use this constructor when reusing a previously spawned window
         this.levelElements = levelElements;
         this.objectSize = objectSize;
@@ -43,13 +44,16 @@ public class LevelWindowController implements Runnable{
 
     }
     
-    LevelWindowController(Drawable[] levelElements, int objectSize, String windowTitle){
+    public LevelWindowController(Drawable[] levelObjects, int objectSize, String windowTitle){
         //Use this constructor for creating a new window
-        this(levelElements, new JFrame(windowTitle), objectSize, windowTitle);
+        this(levelObjects, new JFrame(windowTitle), objectSize, windowTitle);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    
+    public JFrame getWindow(){
+        return this.window;
+    }
+
     public void run() {
 
         DrawHandler drawHandler = null;
