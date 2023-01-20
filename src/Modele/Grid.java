@@ -65,8 +65,8 @@ public class Grid {
             if (obj instanceof Target) targetsTemp.add((Target) obj);
         }
 
-        this.boxes = (Box[]) boxesTemp.toArray();
-        this.targets = (Target[]) targetsTemp.toArray();
+        this.boxes = boxesTemp.toArray(new Box[0]); //Little quirk of the toArray function: the argument is used to determine the return type of the method
+        this.targets = targetsTemp.toArray(new Target[0]);
     }
 
     @objid ("64f70b5f-3561-457c-8868-0c0a0553af19")

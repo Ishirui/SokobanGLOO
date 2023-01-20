@@ -5,7 +5,9 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
+import Modele.BaseObject;
 import Modele.Drawable;
+import Sokoban.Sokoban.InvalidLevelException;
 
 public class LevelWindowController implements Runnable{
 
@@ -17,9 +19,18 @@ public class LevelWindowController implements Runnable{
 
     private JFrame window;
 
-    public LevelWindowController(Drawable[] levelElements, JFrame existingWindow, int objectSize, String windowTitle){
+    public LevelWindowController(BaseObject[] items, JFrame existingWindow, int objectSize, String windowTitle) throws InvalidLevelException{
         //Use this constructor when reusing a previously spawned window
-        this.levelElements = levelElements;
+        
+        //Filter out all non-drawable objects (there shouldn't be any, but Java won't allow the typecast)
+        this.levelElements = new Drawable[items.length];
+        for(int i = 0; i < items.length; i++){
+            BaseObject item = items[i];
+            if(!(item instanceof Drawable)) throw new InvalidLevelException("Invalid level ! A non-drawable object was passed to the window controller");
+
+            levelElements[i] = (Drawable) item;
+        }
+        
         this.objectSize = objectSize;
         this.windowTitle = windowTitle;
 
@@ -43,9 +54,9 @@ public class LevelWindowController implements Runnable{
 
     }
     
-    public LevelWindowController(Drawable[] levelObjects, int objectSize, String windowTitle){
+    public LevelWindowController(BaseObject[] items, int objectSize, String windowTitle) throws InvalidLevelException{
         //Use this constructor for creating a new window
-        this(levelObjects, new JFrame(windowTitle), objectSize, windowTitle);
+        this(items, new JFrame(windowTitle), objectSize, windowTitle);
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     

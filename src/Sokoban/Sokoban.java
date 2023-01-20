@@ -9,7 +9,7 @@ import Modele.Drawable;
 
 public class Sokoban {
 
-    private static int levelNumber;
+    private static int currentLevelNumber;
 
     private static GameController currentLevelController;
     private static LevelWindowController currentLevelWindowController;
@@ -17,17 +17,17 @@ public class Sokoban {
     private static LevelDefinitionLoader levelLoader = new LevelDefinitionLoader();
 
     static void goToLevel(int levelNumber) throws InvalidLevelException{
-        Sokoban.levelNumber = levelNumber;
+        Sokoban.currentLevelNumber = levelNumber;
         BaseObject[] levelObjects = levelLoader.getLevelObjects(levelNumber);
 
 
         //Generate window controller for this level
         if(currentLevelWindowController == null) { //If no current controller is defined - i.e we're yet to enter the first level
-            currentLevelWindowController = new LevelWindowController((Drawable[]) levelObjects, 
+            currentLevelWindowController = new LevelWindowController(levelObjects, 
                                                                     levelLoader.getPrefferedObjectSize(levelNumber), 
                                                                     "SokobanGLOO - Niveau "+Integer.toString(levelNumber));
         }else{
-            currentLevelWindowController = new LevelWindowController((Drawable[]) levelObjects, 
+            currentLevelWindowController = new LevelWindowController(levelObjects, 
                                                                     currentLevelWindowController.getWindow(),
                                                                     levelLoader.getPrefferedObjectSize(levelNumber), 
                                                                     "SokobanGLOO - Niveau "+Integer.toString(levelNumber));
@@ -39,6 +39,12 @@ public class Sokoban {
     }
 
     public static void main(String[] args) {
+        try {
+            goToLevel(-1);
+        } catch (InvalidLevelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater(currentLevelWindowController);
     }
 
