@@ -6,11 +6,12 @@ import Modele.Grid;
 import Modele.PhysicalObject;
 import Modele.Target;
 import Sokoban.Sokoban.InvalidLevelException;
+import Sokoban.Sokoban.SokobanRuntimeException;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
 @objid ("01ebe963-9455-46bf-86b7-7006c049fa5e")
-public class GameController {
+public class GameController implements Controller {
     Grid currentGrid;
     Gardien gardien;
     
@@ -20,11 +21,10 @@ public class GameController {
     }
 
     @objid ("bc6c40f3-01b3-4f09-a965-d412ca1d8894")
-    public void move(Direction direction) throws Exception {
+    public void onInput(InputToken direction) throws SokobanRuntimeException {
         //NOTE: This method is sensitive to the ordering of the to_move list.
         //Especially when moving a box and a player, you should always have the box first.
         //Usually, to_move should be {player} or {box, player}
-
 
         PhysicalObject[] to_move = gardien.checkMove(currentGrid, direction);
         if(to_move.length == 0) return; //An empty list represents an impossible move
@@ -46,7 +46,7 @@ public class GameController {
             PhysicalObject old_obj = currentGrid.getGridMatrix()[row][col];
             
             if(!old_obj.equals(obj)){
-                throw new Exception("The object to move wasn't at the right place in the matrix");
+                throw new SokobanRuntimeException("The object to move wasn't at the right place in the matrix");
             }
             
             PhysicalObject new_obj = currentGrid.getGridMatrix()[newRow][newCol];

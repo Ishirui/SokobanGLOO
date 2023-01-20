@@ -11,7 +11,7 @@ import Modele.Player;
 @objid ("675dfa58-6bee-4218-8b7b-bfbf681fe9f1")
 public class Gardien {
     @objid ("13c0dc74-ae2d-4d8f-bc14-900825df4f1a")
-    public PhysicalObject[] checkMove(Grid grid, Direction direction) {
+    public PhysicalObject[] checkMove(Grid grid, InputToken direction) {
         //Returns the list of objects to move, in order (see implementation of Controleur.move). If the move is not possible, return an empty array
         
         Player player = grid.getPlayer();
