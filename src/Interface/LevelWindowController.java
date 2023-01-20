@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import Modele.BaseObject;
 import Modele.Drawable;
 
 public class LevelWindowController implements Runnable{

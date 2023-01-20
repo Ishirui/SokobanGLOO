@@ -10,7 +10,7 @@ import Modele.Target;
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
 @objid ("01ebe963-9455-46bf-86b7-7006c049fa5e")
-public class Controleur {
+public class GameController {
     Grid grid;
     Gardien gardien;
     
