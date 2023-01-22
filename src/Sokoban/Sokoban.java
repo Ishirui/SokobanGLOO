@@ -17,10 +17,6 @@ public class Sokoban {
         entry(KeyEvent.VK_LEFT, InputToken.LEFT)
         );
 
-
-
-
-
     private static SokobanGame gameObject = new SokobanGame();
 
     public static void main(String[] args) {

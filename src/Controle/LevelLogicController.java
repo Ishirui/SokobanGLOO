@@ -29,7 +29,6 @@ public class LevelLogicController implements LogicController {
         PhysicalObject[] to_move = gardien.checkMove(currentGrid, direction);
         if(to_move.length == 0) return; //An empty list represents an impossible move
 
-    
         //Convert enum to row and column changes
         int[] delta = direction.getDelta();
         int deltaRow = delta[0]; 
