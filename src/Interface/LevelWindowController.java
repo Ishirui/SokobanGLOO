@@ -1,9 +1,14 @@
 package Interface;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Modele.BaseObject;
 import Modele.Drawable;
@@ -18,7 +23,7 @@ public class LevelWindowController implements WindowController{
     private Dimension windowSize;
 
     private JFrame window;
-    private DrawHandler drawHandler;
+    private JPanel panel;
 
     public LevelWindowController(BaseObject[] items, JFrame existingWindow, int objectSize, String windowTitle) throws InvalidLevelException{
         //Use this constructor when reusing a previously spawned window
@@ -47,13 +52,16 @@ public class LevelWindowController implements WindowController{
         }
 
         this.windowSize = new Dimension(objectSize*(maxCol+1), objectSize*(maxRow+1));
-
-        existingWindow.setPreferredSize(this.windowSize);
-        existingWindow.setTitle(this.windowTitle);
-
         this.window = existingWindow;
-        setupWindow();
+        try {
+            this.panel = new LevelPanel(levelElements, objectSize);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
+        //Load images
+        setupWindow();
     }
     
     public LevelWindowController(BaseObject[] items, int objectSize, String windowTitle) throws InvalidLevelException{
@@ -63,14 +71,11 @@ public class LevelWindowController implements WindowController{
     }
     
     public void setupWindow(){
-        try {
-            drawHandler = new DrawHandler(levelElements, objectSize);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        window.add(drawHandler);
+        window.setPreferredSize(windowSize);
+        window.setTitle(windowTitle);
+        window.add(panel);
         window.pack();
+        window.setVisible(true);
     }
     
     
@@ -79,7 +84,8 @@ public class LevelWindowController implements WindowController{
     }
 
     public void refresh() {
-        window.setVisible(true);
-        drawHandler.repaint();
+        panel.repaint();
+        window.repaint();
+        window.requestFocus();
     }
 }

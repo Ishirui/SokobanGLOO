@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 
 import Modele.Drawable;
 
-public class DrawHandler extends JPanel {
+public class LevelPanel extends JPanel {
 
     private Map<String, Image> imageDict = new HashMap<String, Image>();
     private Drawable[] drawables;
 
     private int objectSize;
 
-    public DrawHandler(Drawable[] drawables, int objectSize) throws IOException {
+    public LevelPanel(Drawable[] drawables, int objectSize) throws IOException {
         super();
 
         //Load all images
@@ -45,8 +45,6 @@ public class DrawHandler extends JPanel {
             Image image = imageDict.get(obj.getClass().getSimpleName());
             
             g.drawImage(image, x, y, null);
-        }
-        
-        
+        } 
     }
 }
