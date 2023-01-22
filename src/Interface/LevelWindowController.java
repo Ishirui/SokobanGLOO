@@ -2,6 +2,7 @@ package Interface;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -78,7 +79,11 @@ public class LevelWindowController implements WindowController{
         window.setVisible(true);
     }
     
-    
+    public void setKeyboardHandler(KeyboardHandler keyboardHandler){
+        for(KeyListener listener:window.getKeyListeners()) window.removeKeyListener(listener); //Remove all listeners on the window
+        window.addKeyListener(keyboardHandler);
+    }
+
     public JFrame getWindow(){
         return this.window;
     }
