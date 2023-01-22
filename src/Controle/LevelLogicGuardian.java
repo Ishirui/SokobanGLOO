@@ -36,8 +36,8 @@ public class LevelLogicGuardian {
         if(!(to_go instanceof MovableObject)) return new PhysicalObject[]{}; //If the destination is collisionable AND not movable (e.g Wall), we can also return immediately
 
         //Handle the case where the player has to push a MovableObject (e.g Box)
-        int new_row_2 = old_row + delta[0];
-        int new_col_2 = old_col + delta[1];
+        int new_row_2 = new_row + delta[0];
+        int new_col_2 = new_col + delta[1];
 
         PhysicalObject to_go_2 = grid.getGridMatrix()[new_row_2][new_col_2];
         if (to_go_2 instanceof Collisionable) return new PhysicalObject[]{}; //If the Box has to move into something collisionable - including another box ! - it can't, so the move isn't possible
