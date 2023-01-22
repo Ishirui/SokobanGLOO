@@ -42,7 +42,7 @@ public class Grid {
         this.width = maxCol + 1;
         this.height = maxRow + 1;
 
-        this.gridMatrix = new PhysicalObject[width][height];
+        this.gridMatrix = new PhysicalObject[height][width];
 
         ArrayList<Box> boxesTemp = new ArrayList<Box>();
         ArrayList<Target> targetsTemp = new ArrayList<Target>();
@@ -52,8 +52,8 @@ public class Grid {
             int col = obj.getColumn();
 
             if (obj instanceof PhysicalObject){
-                if(gridMatrix[col][row] != null) throw new InvalidLevelException("Invalid level data ! Two objects occupy the same spot.");
-                gridMatrix[col][row] = (PhysicalObject) obj;
+                if(gridMatrix[row][col] != null) throw new InvalidLevelException("Invalid level data ! Two objects occupy the same spot.");
+                gridMatrix[row][col] = (PhysicalObject) obj;
             } 
 
             if (obj instanceof Player){

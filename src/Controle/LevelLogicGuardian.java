@@ -23,7 +23,14 @@ public class LevelLogicGuardian {
         int new_row = old_row + delta[0];
         int new_col = old_col + delta[1];
 
-        PhysicalObject to_go = grid.getGridMatrix()[new_row][new_col];
+        PhysicalObject to_go;
+
+        try{
+            to_go = grid.getGridMatrix()[new_row][new_col];
+        } catch(ArrayIndexOutOfBoundsException e){
+            //An OOB Exception means that we tried to access an object outside of the game area -- we'll implicitly assume it's a wall
+            return new PhysicalObject[]{};
+        }
 
         if(!(to_go instanceof Collisionable)) return new PhysicalObject[]{player}; //If the destination is not collisionable (e.g Floor), we can return immediately
         if(!(to_go instanceof MovableObject)) return new PhysicalObject[]{}; //If the destination is collisionable AND not movable (e.g Wall), we can also return immediately

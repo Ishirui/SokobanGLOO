@@ -21,6 +21,8 @@ public class LevelDefinitionLoader {
             new Wall(0,3), new Wall(1, 3), new Wall(2,3), new Wall(3, 3),
             new Target(2,1)};
 
+        //BaseObject[] testElements = { new Player(0,0), new Floor(0,1)};
+
 
         if(levelNumber == -1) return testElements;
         return new BaseObject[] {};
@@ -28,6 +30,6 @@ public class LevelDefinitionLoader {
 
     public int getPrefferedObjectSize(int levelNumber){
        //TODO: Implement method
-       return 48;
+       return 64;
     }
 }
