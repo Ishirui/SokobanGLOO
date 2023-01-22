@@ -11,17 +11,17 @@ import Sokoban.Sokoban.SokobanRuntimeException;
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
 @objid ("01ebe963-9455-46bf-86b7-7006c049fa5e")
-public class GameController implements Controller {
+public class LevelLogicController implements LogicController {
     Grid currentGrid;
-    Gardien gardien;
+    LevelLogicGuardian gardien;
     
-    public GameController(BaseObject[] items) throws InvalidLevelException{
+    public LevelLogicController(BaseObject[] items) throws InvalidLevelException{
         this.currentGrid = new Grid(items);
-        this.gardien = new Gardien();
+        this.gardien = new LevelLogicGuardian();
     }
 
     @objid ("bc6c40f3-01b3-4f09-a965-d412ca1d8894")
-    public void onInput(InputToken direction) throws SokobanRuntimeException {
+    public void takeGameAction(InputToken direction) throws SokobanRuntimeException {
         //NOTE: This method is sensitive to the ordering of the to_move list.
         //Especially when moving a box and a player, you should always have the box first.
         //Usually, to_move should be {player} or {box, player}

@@ -8,7 +8,7 @@ import static java.util.Map.entry;
 import javax.swing.SwingUtilities;
 
 import Controle.InputToken;
-import Controle.GameController;
+import Controle.LevelLogicController;
 import Interface.KeyboardHandler;
 import Interface.LevelWindowController;
 import Modele.BaseObject;
@@ -27,7 +27,7 @@ public class Sokoban {
     //Dynamic fields
     private static int currentLevelNumber;
 
-    private static GameController currentLevelController;
+    private static LevelLogicController currentLevelController;
     private static LevelWindowController currentLevelWindowController;
     private static KeyboardHandler currentKeyboardHandler;
 
@@ -38,7 +38,7 @@ public class Sokoban {
         BaseObject[] levelObjects = levelLoader.getLevelObjects(levelNumber);
 
         //Generate game controller for this level
-        currentLevelController = new GameController(levelObjects);
+        currentLevelController = new LevelLogicController(levelObjects);
 
         //Generate keyboard controller with the appropriate mapping, and attach it to the game controller
         currentKeyboardHandler = new KeyboardHandler(currentLevelController, levelKeyMapping);
