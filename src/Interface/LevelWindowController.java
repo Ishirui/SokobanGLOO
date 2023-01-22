@@ -9,7 +9,7 @@ import Modele.BaseObject;
 import Modele.Drawable;
 import Sokoban.Sokoban.InvalidLevelException;
 
-public class LevelWindowController implements Runnable{
+public class LevelWindowController implements WindowController{
 
     private Drawable[] levelElements;
     private int objectSize;
@@ -18,6 +18,7 @@ public class LevelWindowController implements Runnable{
     private Dimension windowSize;
 
     private JFrame window;
+    private DrawHandler drawHandler;
 
     public LevelWindowController(BaseObject[] items, JFrame existingWindow, int objectSize, String windowTitle) throws InvalidLevelException{
         //Use this constructor when reusing a previously spawned window
@@ -51,6 +52,7 @@ public class LevelWindowController implements Runnable{
         existingWindow.setTitle(this.windowTitle);
 
         this.window = existingWindow;
+        setupWindow();
 
     }
     
@@ -60,13 +62,7 @@ public class LevelWindowController implements Runnable{
         this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public JFrame getWindow(){
-        return this.window;
-    }
-
-    public void run() {
-
-        DrawHandler drawHandler = null;
+    public void setupWindow(){
         try {
             drawHandler = new DrawHandler(levelElements, objectSize);
         } catch (IOException e) {
@@ -75,6 +71,15 @@ public class LevelWindowController implements Runnable{
         }
         window.add(drawHandler);
         window.pack();
+    }
+    
+    
+    public JFrame getWindow(){
+        return this.window;
+    }
+
+    public void refresh() {
         window.setVisible(true);
+        drawHandler.repaint();
     }
 }
