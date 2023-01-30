@@ -13,8 +13,9 @@ public enum InputToken{
     //Dummy value - could have used null instead
     NOTHING(0,0),
 
-    //This is only used in menus
-    ENTER(0,0);
+    //This is only used in menus or for control
+    ENTER(0,0),
+    RESET(0,0);
 
     private int deltaRow;
     private int deltaCol;

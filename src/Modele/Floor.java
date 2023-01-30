@@ -9,4 +9,9 @@ public class Floor extends PhysicalObject implements Drawable {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public Floor clone(){
+        return new Floor(this.column, this.row);
+    }
+
 }

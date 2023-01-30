@@ -9,4 +9,9 @@ public class Target extends BaseObject implements Drawable {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public Target clone(){
+        return new Target(this.column, this.row);
+    }
+
 }

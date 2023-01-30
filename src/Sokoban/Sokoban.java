@@ -14,7 +14,8 @@ public class Sokoban {
         entry(KeyEvent.VK_UP, InputToken.UP),
         entry(KeyEvent.VK_DOWN, InputToken.DOWN),
         entry(KeyEvent.VK_RIGHT, InputToken.RIGHT),
-        entry(KeyEvent.VK_LEFT, InputToken.LEFT)
+        entry(KeyEvent.VK_LEFT, InputToken.LEFT),
+        entry(KeyEvent.VK_R, InputToken.RESET)
         );
 
     private static SokobanGame gameObject = new SokobanGame();

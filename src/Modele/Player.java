@@ -9,4 +9,9 @@ public class Player extends PhysicalObject implements Collisionable, Drawable {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public Player clone(){
+        return new Player(this.column, this.row);
+    }
+
 }

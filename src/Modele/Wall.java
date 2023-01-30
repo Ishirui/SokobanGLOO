@@ -9,4 +9,9 @@ public class Wall extends PhysicalObject implements Collisionable, Drawable {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public Wall clone(){
+        return new Wall(this.column, this.row);
+    }
+
 }

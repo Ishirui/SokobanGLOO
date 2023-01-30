@@ -9,6 +9,11 @@ public class Box extends MovableObject implements Collisionable, Drawable {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public Box clone(){
+        return new Box(this.column, this.row);
+    }
+
     @objid ("0803debf-b931-4dcb-84e1-7749206e4b48")
     private boolean isOnTarget;
 
