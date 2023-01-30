@@ -15,10 +15,11 @@ public class LevelPanel extends JPanel {
 
     private Map<String, Image> imageDict = new HashMap<String, Image>();
     private Drawable[] drawables;
+    private Drawable[] overlayDrawables; //Things to draw ON TOP of the rest: targets, menu maybe ?
 
     private int objectSize;
 
-    public LevelPanel(Drawable[] drawables, int objectSize) throws IOException {
+    public LevelPanel(Drawable[] drawables, Drawable[] overlayDrawables, int objectSize) throws IOException {
         super();
 
         //Load all images
@@ -31,6 +32,7 @@ public class LevelPanel extends JPanel {
         imageDict.put("Wall", ImageIO.read(getClass().getResource("assets/Wall.png")).getScaledInstance(objectSize, objectSize, objectSize));
 
         this.drawables = drawables;
+        this.overlayDrawables = overlayDrawables;
         this.objectSize = objectSize;
     }
 
@@ -38,7 +40,16 @@ public class LevelPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         
-        for(Drawable obj:drawables){
+        for(Drawable obj:drawables){ //Draw main drawables
+            int x = objectSize*obj.getColumn();
+            int y = objectSize*obj.getRow();
+            
+            Image image = imageDict.get(obj.getClass().getSimpleName());
+            
+            g.drawImage(image, x, y, null);
+        } 
+
+        for(Drawable obj:overlayDrawables){ //Draw overlay drawables
             int x = objectSize*obj.getColumn();
             int y = objectSize*obj.getRow();
             
