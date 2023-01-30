@@ -1,5 +1,7 @@
 package Sokoban;
 
+import java.io.IOException;
+
 import javax.swing.SwingUtilities;
 
 import Controle.LevelLogicController;
@@ -17,11 +19,16 @@ public class SokobanGame {
     
     private int currentLevelNumber;
 
-    private LevelDefinitionLoader levelLoader = new LevelDefinitionLoader();
+    private LevelDefinitionLoader levelLoader = new LevelDefinitionLoader("/home/ishirui/Documents/Code/SokobanGLOO/levels");
 
     void goToLevel(int levelNumber) throws InvalidLevelException{
         currentLevelNumber = levelNumber;
-        BaseObject[] levelObjects = levelLoader.getLevelObjects(levelNumber);
+        try {
+            levelLoader.loadLevel(levelNumber);
+        } catch (IOException e) {
+            throw new InvalidLevelException("IO Error with level"+String.valueOf(levelNumber));
+        }
+        BaseObject[] levelObjects = levelLoader.getLevelObjects();
 
         //Generate game controller for this level
         currentLogicController = new LevelLogicController(levelObjects);
@@ -29,13 +36,13 @@ public class SokobanGame {
         //Generate window controller for this level
         if(currentWindowController == null) { //If no current controller is defined - i.e we're yet to enter the first level
             currentWindowController = new LevelWindowController(levelObjects, 
-                                                                    levelLoader.getPrefferedObjectSize(levelNumber), 
+                                                                    levelLoader.getPrefferedObjectSize(), 
                                                                     "SokobanGLOO - Niveau "+Integer.toString(levelNumber));
 
         }else{
             currentWindowController = new LevelWindowController(levelObjects, 
                                                                     currentWindowController.getWindow(),
-                                                                    levelLoader.getPrefferedObjectSize(levelNumber), 
+                                                                    levelLoader.getPrefferedObjectSize(), 
                                                                     "SokobanGLOO - Niveau "+Integer.toString(levelNumber));
         }
 

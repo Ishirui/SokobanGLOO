@@ -8,6 +8,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import Modele.BaseObject;
 import Modele.Floor;
@@ -25,16 +29,25 @@ public class LevelDefinitionLoader {
 
     public LevelDefinitionLoader(String levelsLocation){
         File folder = new File(levelsLocation);
-        ArrayList<File> levelFiles = new ArrayList<File>();
+        Map<Integer, File> tempMap = new HashMap<Integer, File>();
         for(File file:folder.listFiles()){
             String name = file.getName();
             if(!name.endsWith(".txt")) continue;
             if(!name.startsWith("level")) continue;
 
             int levelNumber = Integer.parseInt(name.substring(5, name.indexOf(".")));
-            levelFiles.add(levelNumber, file);
+            tempMap.put(levelNumber, file);
         }
-        this.levelFiles = levelFiles.toArray(new File[]{});
+        
+        Set<Integer> levelNumberSet = tempMap.keySet();
+        int maxLevel = Collections.max(levelNumberSet);
+
+        levelFiles = new File[maxLevel+1];
+
+        for(Integer levelNumber: levelNumberSet){
+            levelFiles[levelNumber] = tempMap.get(levelNumber);
+        }
+
     }
 
     public void loadLevel(int levelNumber) throws IOException{

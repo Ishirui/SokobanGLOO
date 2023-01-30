@@ -21,7 +21,7 @@ public class Sokoban {
 
     public static void main(String[] args) {
         try {
-            gameObject.goToLevel(-1);
+            gameObject.goToLevel(0);
         } catch (InvalidLevelException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
