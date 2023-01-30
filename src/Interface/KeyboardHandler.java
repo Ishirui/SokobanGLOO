@@ -6,6 +6,8 @@ import java.util.Map;
 
 import Controle.LogicController;
 import Controle.InputToken;
+import Sokoban.SokobanGame;
+import Sokoban.Sokoban.InvalidLevelException;
 import Sokoban.Sokoban.SokobanRuntimeException;
 
 
@@ -13,11 +15,13 @@ public class KeyboardHandler implements KeyListener {
     private LogicController logicController;
     private WindowController windowController;
     private Map<Integer, InputToken> keyMapping;
+    private SokobanGame gameObject;
 
-    public KeyboardHandler(LogicController controller, WindowController windowController, Map<Integer, InputToken> keyMapping){
+    public KeyboardHandler(SokobanGame gameObject, LogicController controller, WindowController windowController, Map<Integer, InputToken> keyMapping){
         this.logicController = controller;
         this.windowController = windowController;
         this.keyMapping = keyMapping;
+        this.gameObject = gameObject; //Only needed for the reset - need to call goToLevel
     }
 
 
@@ -32,7 +36,15 @@ public class KeyboardHandler implements KeyListener {
 
 
         if(token == InputToken.NOTHING) return;
-        
+        if(token == InputToken.RESET)
+            try {
+                gameObject.goToLevel(gameObject.getCurrentLevelNumber());
+                gameObject.launch();
+            } catch (InvalidLevelException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
         try {
             this.logicController.takeGameAction(token);
         } catch (SokobanRuntimeException e) {
