@@ -1,4 +1,4 @@
-package Modele;
+package Model;
 
 import Controle.InputToken;
 import com.modeliosoft.modelio.javadesigner.annotations.objid;

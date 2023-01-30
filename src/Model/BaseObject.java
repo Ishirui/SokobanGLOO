@@ -1,4 +1,4 @@
-package Modele;
+package Model;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
@@ -9,9 +9,6 @@ public abstract class BaseObject implements Cloneable{
         this.row = row;
     }
     
-    @Override
-    public abstract BaseObject clone();
-        //Note that the clone method in java has special behavior - if called from a subclass, it will return an instance of that subclass, and not an Object
     
     @objid ("01495af3-2c0f-466c-b102-cf2440edd652")
     protected int column;

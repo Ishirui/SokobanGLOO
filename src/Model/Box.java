@@ -1,4 +1,4 @@
-package Modele;
+package Model;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
@@ -7,11 +7,6 @@ public class Box extends MovableObject implements Collisionable, Drawable {
     public Box(int col, int row) {
         super(col, row);
         //TODO Auto-generated constructor stub
-    }
-
-    @Override
-    public Box clone(){
-        return new Box(this.column, this.row);
     }
 
     @objid ("0803debf-b931-4dcb-84e1-7749206e4b48")
