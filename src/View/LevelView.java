@@ -39,11 +39,18 @@ public class LevelView implements Runnable{
         }
         Dimension windowSize = new Dimension(objectSize*(maxCol+1), objectSize*(maxRow+1));
         
+        frame.setVisible(false);
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
         frame.setPreferredSize(windowSize);
         frame.setTitle("Sokoban - Niveau "+String.valueOf(levelNumber));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new LevelPanel(drawableItems.toArray(new Drawable[]{}), overlayItems.toArray(new Drawable[]{}), objectSize));
         frame.pack();
+
+        frame.revalidate();
+
         frame.setVisible(true);
 
         this.frame = frame;
