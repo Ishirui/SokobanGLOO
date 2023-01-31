@@ -81,7 +81,7 @@ public class LevelLoader {
 
 
         while(currentLine != null){
-            j = 0;
+            i = 0;
             for(char character:currentLine.toCharArray()){
                 switch(character){
                     case '#':
@@ -109,9 +109,9 @@ public class LevelLoader {
                         objects.add(new Target(i,j));
                         break;
                 }
-                j++;
+                i++;
             }
-            i++;
+            j++;
             currentLine = br.readLine();
         }
 

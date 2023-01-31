@@ -4,8 +4,12 @@ import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
+import com.modeliosoft.modelio.javadesigner.annotations.objid;
+
+import Model.Box;
 import Model.Grid;
 import Model.PhysicalObject;
+import Model.Target;
 import Sokoban.SokobanExceptions.InvalidLevelException;
 import Sokoban.SokobanExceptions.SokobanRuntimeException;
 import View.InputToken;
@@ -21,9 +25,9 @@ public class Controller{
 
     private LevelView currentView;
 
-    private LevelLoader levelLoader = new LevelLoader("/home/ishirui/Documents/Code/SokobanGLOO/levels");
+    private LevelLoader levelLoader = new LevelLoader("levels");
 
-    public void doMove(InputToken token) throws SokobanRuntimeException {
+    public void doMove(InputToken token) throws SokobanRuntimeException, InvalidLevelException {
         //NOTE: This method is sensitive to the ordering of the to_move list.
         //Especially when moving a box and a player, you should always have the box first.
         //Usually, to_move should be {player} or {box, player}
@@ -46,10 +50,6 @@ public class Controller{
 
             PhysicalObject old_obj = currentGrid.getGridMatrix()[row][col];
             
-            if(!old_obj.equals(obj)){
-                throw new SokobanRuntimeException("The object to move wasn't at the right place in the matrix");
-            }
-            
             PhysicalObject new_obj = currentGrid.getGridMatrix()[newRow][newCol];
 
             //Swap the two objects, representing the move in the gridMatrix
@@ -61,11 +61,15 @@ public class Controller{
             obj.move(token);
             new_obj.move(token.getOpposite());
             currentView.run();
+
+            checkOnTarget();
+            if(checkWin()) goToLevel(currentLevelNumber+1);
         }
     }
 
     public void goToLevel(int levelNumber) throws InvalidLevelException{
-        
+        currentLevelNumber = levelNumber;
+
         try {
             levelLoader.loadLevel(currentLevelNumber);
         } catch (IOException e) {
@@ -90,6 +94,34 @@ public class Controller{
     public void resetLevel() throws InvalidLevelException {
         goToLevel(currentLevelNumber);
     }
+
+    public void checkOnTarget(){
+        //Checks which boxes are on targets
+        //Should be run after each move
+        Box[] boxes = currentGrid.getBoxes();
+        Target[] targets = currentGrid.getTargets();   
+        //Note that the targets list is NOT a matrix, only a list
+        //Thus, better to iterate through targets and access boxes through coordinates, rather than the opposite: this saves iterating through an array
+
+        //A priori, all boxes are NOT on targets
+        for(Box box:boxes) box.setIsOnTarget(false);
+
+
+        for(Target target: targets){
+            int col = target.getColumn();
+            int row = target.getRow();
+
+            PhysicalObject obj = currentGrid.getGridMatrix()[row][col];
+
+            if(obj instanceof Box) ((Box) obj).setIsOnTarget(true);
+        }
+    }
+
+    public boolean checkWin() {
+        for(Box box:currentGrid.getBoxes()) if(!box.getIsOnTarget()) return false;
+        return true;
+    }
+
 
     public void launch(){
         SwingUtilities.invokeLater(currentView);
