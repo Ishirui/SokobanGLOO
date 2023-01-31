@@ -2,7 +2,6 @@ package View;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
-@objid ("6564f8da-09a3-422d-9e44-73c4632b9b50")
 public enum InputToken{
     //These four are useful both in menus and in a level
     UP(-1,-0),
@@ -29,13 +28,18 @@ public enum InputToken{
     }
 
     public InputToken getOpposite(){
-        return switch(this){
-            case UP -> DOWN;
-            case DOWN -> UP;
-            case LEFT -> RIGHT;
-            case RIGHT -> LEFT;
-            default -> this;
-        };
+        switch(this){
+            case UP:
+                return DOWN;
+            case DOWN:
+                return UP;
+            case LEFT:
+                return RIGHT;
+            case RIGHT:
+                return LEFT;
+            default:
+                return this;
+        }
     }
 }
 

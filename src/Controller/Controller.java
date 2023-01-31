@@ -58,10 +58,11 @@ public class Controller{
             //Update the object coordinates
             obj.move(token);
             new_obj.move(token.getOpposite());
-            currentView.run();
-
+            
             checkOnTarget();
             if(checkWin()) goToLevel(currentLevelNumber+1);
+
+            currentView.run();
         }
     }
 
