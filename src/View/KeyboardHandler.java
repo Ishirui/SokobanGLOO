@@ -1,11 +1,11 @@
-package Interface;
+package View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
 
 import Controle.LogicController;
-import Controle.InputToken;
+import Controller.InputToken;
 import Sokoban.SokobanGame;
 import Sokoban.Sokoban.InvalidLevelException;
 import Sokoban.Sokoban.SokobanRuntimeException;

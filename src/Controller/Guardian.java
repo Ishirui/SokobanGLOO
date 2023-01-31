@@ -1,15 +1,15 @@
-package Controle;
+package Controller;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
-import Modele.Collisionable;
-import Modele.Grid;
-import Modele.MovableObject;
-import Modele.PhysicalObject;
-import Modele.Player;
+import Model.Collisionable;
+import Model.Grid;
+import Model.MovableObject;
+import Model.PhysicalObject;
+import Model.Player;
 
 @objid ("675dfa58-6bee-4218-8b7b-bfbf681fe9f1")
-public class LevelLogicGuardian {
+public class Guardian {
     @objid ("13c0dc74-ae2d-4d8f-bc14-900825df4f1a")
     public PhysicalObject[] checkMove(Grid grid, InputToken direction) {
         //Returns the list of objects to move, in order (see implementation of Controleur.move). If the move is not possible, return an empty array

@@ -1,4 +1,4 @@
-package Controle;
+package Controller;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
@@ -13,8 +13,7 @@ public enum InputToken{
     //Dummy value - could have used null instead
     NOTHING(0,0),
 
-    //This is only used in menus or for control
-    ENTER(0,0),
+    //This is only used for for control
     RESET(0,0);
 
     private int deltaRow;
