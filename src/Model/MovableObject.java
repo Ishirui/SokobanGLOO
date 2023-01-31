@@ -1,7 +1,8 @@
 package Model;
 
-import Controller.InputToken;
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
+
+import View.InputToken;
 
 @objid ("c5edcf6c-4b52-4985-9bac-c6a5b1325d97")
 public abstract class MovableObject extends PhysicalObject {

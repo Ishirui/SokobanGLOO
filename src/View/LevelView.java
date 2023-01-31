@@ -44,6 +44,9 @@ public class LevelView implements Runnable{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new LevelPanel(drawableItems.toArray(new Drawable[]{}), overlayItems.toArray(new Drawable[]{}), objectSize));
         frame.pack();
+        frame.setVisible(true);
+
+        this.frame = frame;
     }
 
     public JFrame getFrame(){

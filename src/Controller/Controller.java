@@ -2,10 +2,13 @@ package Controller;
 
 import java.io.IOException;
 
+import javax.swing.SwingUtilities;
+
 import Model.Grid;
 import Model.PhysicalObject;
-import Sokoban.Sokoban.InvalidLevelException;
+import Sokoban.SokobanExceptions.InvalidLevelException;
 import Sokoban.SokobanExceptions.SokobanRuntimeException;
+import View.InputToken;
 import View.KeyboardHandler;
 import View.LevelView;
 
@@ -17,7 +20,6 @@ public class Controller{
     private Grid currentGrid;
 
     private LevelView currentView;
-    private KeyboardHandler keyboardHandler;
 
     private LevelLoader levelLoader = new LevelLoader("/home/ishirui/Documents/Code/SokobanGLOO/levels");
 
@@ -58,6 +60,7 @@ public class Controller{
             //Update the object coordinates
             obj.move(token);
             new_obj.move(token.getOpposite());
+            currentView.run();
         }
     }
 
@@ -80,11 +83,16 @@ public class Controller{
             currentView = new LevelView(currentView.getFrame(), levelNumber,levelLoader.getLevelObjects(), levelLoader.getPrefferedObjectSize());
         }
 
-        currentView.setKeyboardHandler(keyboardHandler);
+        currentView.setKeyboardHandler(new KeyboardHandler(this));
+        currentView.run();
     }
 
     public void resetLevel() throws InvalidLevelException {
         goToLevel(currentLevelNumber);
+    }
+
+    public void launch(){
+        SwingUtilities.invokeLater(currentView);
     }
 
 }

@@ -1,4 +1,4 @@
-package Controller;
+package View;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 

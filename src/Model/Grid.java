@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
 
-import Sokoban.Sokoban.InvalidLevelException;
+import Sokoban.SokobanExceptions.InvalidLevelException;
 
 
 @objid ("31534487-cfc0-4100-b387-4c08228e3a47")

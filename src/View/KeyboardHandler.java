@@ -3,25 +3,35 @@ package View;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
+import static java.util.Map.entry;
 
 import Controller.Controller;
-import Controller.InputToken;
+import Sokoban.SokobanExceptions.InvalidLevelException;
+import Sokoban.SokobanExceptions.SokobanRuntimeException;
 
 
 public class KeyboardHandler implements KeyListener {
     private Controller controller;
-    private Map<Integer, InputToken> keyMapping;
+    
+    
 
-    public KeyboardHandler(Controller controller, Map<Integer, InputToken> keyMapping){
+    public KeyboardHandler(Controller controller){
         this.controller = controller;
-        this.keyMapping = keyMapping;
     }
 
     InputToken getToken(KeyEvent event){
+        Map<Integer, InputToken> keyMapping = Map.ofEntries(
+        entry(KeyEvent.VK_UP, InputToken.UP),
+        entry(KeyEvent.VK_DOWN, InputToken.DOWN),
+        entry(KeyEvent.VK_RIGHT, InputToken.RIGHT),
+        entry(KeyEvent.VK_LEFT, InputToken.LEFT),
+        entry(KeyEvent.VK_R, InputToken.RESET)
+    );
+        
         return keyMapping.getOrDefault(event.getKeyCode(), InputToken.NOTHING);
     }
 
-    void handleToken(InputToken token){
+    void handleToken(InputToken token) throws InvalidLevelException, SokobanRuntimeException{
         switch(token){
             case RESET:
                 controller.resetLevel();
@@ -38,7 +48,12 @@ public class KeyboardHandler implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent event) {
-        handleToken(getToken(event));
+        try {
+            handleToken(getToken(event));
+        } catch (InvalidLevelException | SokobanRuntimeException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 

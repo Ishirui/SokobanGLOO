@@ -3,6 +3,7 @@ package View;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import static java.util.Map.entry;
 
@@ -16,12 +17,13 @@ public class LevelPanel extends JPanel {
     private Drawable[] overlayDrawables; //Things to draw ON TOP of the rest: targets, menu maybe ?
 
     private int objectSize;
-        //Declare as static to not have to reload on every instanciation of LevelView
-    private static Map<String, Image> imageDict = null;
+    private Map<String, Image> imageDict = new HashMap<String, Image>();
 
+    //Declare as static to not have to reload on every instanciation of LevelView
+    private static Map<String, Image> originalImageDict = null;
     static{ //We need to do this weird thing instead of just assigning a default to imageDict to allow us to handle the IOError
         try {
-            imageDict = 
+            originalImageDict = 
             Map.ofEntries(
                 entry("Floor", ImageIO.read(LevelView.class.getResource("assets/Floor.png"))),
                 entry("Box", ImageIO.read(LevelView.class.getResource("assets/Box.png"))),
@@ -37,7 +39,9 @@ public class LevelPanel extends JPanel {
 
     public LevelPanel(Drawable[] drawables, Drawable[] overlayDrawables, int objectSize){
         super();
-
+        for(String key:originalImageDict.keySet()){ //Scale all image instances in the set
+            imageDict.put(key, originalImageDict.get(key).getScaledInstance(objectSize, objectSize, objectSize));
+        }
 
         this.drawables = drawables;
         this.overlayDrawables = overlayDrawables;
