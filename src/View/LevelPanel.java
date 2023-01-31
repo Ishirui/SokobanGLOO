@@ -1,35 +1,43 @@
-package Interface;
+package View;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import static java.util.Map.entry;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import Modele.Drawable;
+import Model.Drawable;
 
 public class LevelPanel extends JPanel {
-
-    private Map<String, Image> imageDict = new HashMap<String, Image>();
     private Drawable[] drawables;
     private Drawable[] overlayDrawables; //Things to draw ON TOP of the rest: targets, menu maybe ?
 
     private int objectSize;
+        //Declare as static to not have to reload on every instanciation of LevelView
+    private static Map<String, Image> imageDict = null;
 
-    public LevelPanel(Drawable[] drawables, Drawable[] overlayDrawables, int objectSize) throws IOException {
+    static{ //We need to do this weird thing instead of just assigning a default to imageDict to allow us to handle the IOError
+        try {
+            imageDict = 
+            Map.ofEntries(
+                entry("Floor", ImageIO.read(LevelView.class.getResource("assets/Floor.png"))),
+                entry("Box", ImageIO.read(LevelView.class.getResource("assets/Box.png"))),
+                entry("Player", ImageIO.read(LevelView.class.getResource("assets/Player.png"))),
+                entry("Target", ImageIO.read(LevelView.class.getResource("assets/Target.png"))),
+                entry("Wall", ImageIO.read(LevelView.class.getResource("assets/Wall.png")))
+            );
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public LevelPanel(Drawable[] drawables, Drawable[] overlayDrawables, int objectSize){
         super();
 
-        //Load all images
-        System.out.println(this.getClass().getResource("assets/Floor.png"));
-
-        imageDict.put("Floor", ImageIO.read(getClass().getResource("assets/Floor.png")).getScaledInstance(objectSize, objectSize, objectSize));
-        imageDict.put("Box", ImageIO.read(getClass().getResource("assets/Box.png")).getScaledInstance(objectSize, objectSize, objectSize));
-        imageDict.put("Player", ImageIO.read(getClass().getResource("assets/Player.png")).getScaledInstance(objectSize, objectSize, objectSize));
-        imageDict.put("Target", ImageIO.read(getClass().getResource("assets/Target.png")).getScaledInstance(objectSize, objectSize, objectSize));
-        imageDict.put("Wall", ImageIO.read(getClass().getResource("assets/Wall.png")).getScaledInstance(objectSize, objectSize, objectSize));
 
         this.drawables = drawables;
         this.overlayDrawables = overlayDrawables;

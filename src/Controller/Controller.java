@@ -1,8 +1,12 @@
 package Controller;
 
+import java.io.IOException;
+
 import Model.Grid;
 import Model.PhysicalObject;
+import Sokoban.Sokoban.InvalidLevelException;
 import Sokoban.SokobanExceptions.SokobanRuntimeException;
+import View.KeyboardHandler;
 import View.LevelView;
 
 public class Controller{
@@ -13,6 +17,7 @@ public class Controller{
     private Grid currentGrid;
 
     private LevelView currentView;
+    private KeyboardHandler keyboardHandler;
 
     private LevelLoader levelLoader = new LevelLoader("/home/ishirui/Documents/Code/SokobanGLOO/levels");
 
@@ -56,13 +61,29 @@ public class Controller{
         }
     }
 
-    public void goToLevel(int levelNumber){
-        levelLoader.loadLevel(currentLevelNumber);
+    public void goToLevel(int levelNumber) throws InvalidLevelException{
+        
+        try {
+            levelLoader.loadLevel(currentLevelNumber);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
         currentGrid = new Grid(levelLoader.getLevelObjects());
-        currentView = new LevelView(levelLoader.getLevelObjects());
+
+        if(currentView == null){
+            //If the window has not been initialized
+            currentView = new LevelView(levelNumber, levelLoader.getLevelObjects(), levelLoader.getPrefferedObjectSize());
+        }else{
+            //Otherwise, reuse it
+            currentView = new LevelView(currentView.getFrame(), levelNumber,levelLoader.getLevelObjects(), levelLoader.getPrefferedObjectSize());
+        }
+
+        currentView.setKeyboardHandler(keyboardHandler);
     }
 
-    public void resetLevel() {
+    public void resetLevel() throws InvalidLevelException {
         goToLevel(currentLevelNumber);
     }
 
