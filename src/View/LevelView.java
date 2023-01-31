@@ -1,9 +1,8 @@
 package View;
 
-import java.util.ArrayList;
-
 import java.awt.Dimension;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 

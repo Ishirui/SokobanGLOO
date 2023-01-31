@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
-import com.modeliosoft.modelio.javadesigner.annotations.objid;
-
 import Model.Box;
 import Model.Grid;
 import Model.PhysicalObject;

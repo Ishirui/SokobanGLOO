@@ -1,9 +1,10 @@
 package View;
 
+import static java.util.Map.entry;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
-import static java.util.Map.entry;
 
 import Controller.Controller;
 import Sokoban.SokobanExceptions.InvalidLevelException;

@@ -12,11 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 import Model.BaseObject;
+import Model.Box;
 import Model.Floor;
 import Model.Player;
 import Model.Target;
 import Model.Wall;
-import Model.Box;
 
 public class LevelLoader {
     private File[] levelFiles;
