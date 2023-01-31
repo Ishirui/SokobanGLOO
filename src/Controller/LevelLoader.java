@@ -1,33 +1,30 @@
-package Sokoban;
+package Controller;
 
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import Modele.BaseObject;
-import Modele.Floor;
-import Modele.Player;
-import Modele.Target;
-import Modele.Wall;
-import Modele.Box;
+import Model.BaseObject;
+import Model.Floor;
+import Model.Player;
+import Model.Target;
+import Model.Wall;
+import Model.Box;
 
-public class LevelDefinitionLoader {
+public class LevelLoader {
     private File[] levelFiles;
 
-    private int currentLevelNumber;
     private BaseObject[] currentLevelObjects;
     private int currentPrefferedSize;
 
-    public LevelDefinitionLoader(String levelsLocation){
+    public LevelLoader(String levelsLocation){
         File folder = new File(levelsLocation);
         Map<Integer, File> tempMap = new HashMap<Integer, File>();
         for(File file:folder.listFiles()){
@@ -121,7 +118,6 @@ public class LevelDefinitionLoader {
         br.close();
 
         currentLevelObjects = objects.toArray(new BaseObject[]{}); //Again, the argument is used here to set the type of the resulting array
-        currentLevelNumber = levelNumber;
     }
 
     public BaseObject[] getLevelObjects(){
